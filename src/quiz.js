@@ -1,3 +1,4 @@
+// day 1
 class Quiz {
   constructor(questions, timeLimit, timeRemaining) {
     this.questions = questions;
@@ -10,7 +11,7 @@ class Quiz {
     return this.questions[this.currentQuestionIndex];
   }
   moveToNextQuestion() {
-    if (this.currentQuestionIndex < this.questions.length - 1) {
+    if (this.currentQuestionIndex <= this.questions.length - 1) {
       this.currentQuestionIndex += 1;
     }
   }
@@ -32,6 +33,21 @@ class Quiz {
   }
 
   hasEnded() {
-    return this.currentQuestionIndex >= this.questions.length;
+    console.log(this.currentQuestionIndex, this.questions.length);
+    return this.currentQuestionIndex === this.questions.length;
+  }
+  // day 2
+  filterQuestionsByDifficulty(difficulty) {
+    if (difficulty === 1 || difficulty === 2 || difficulty === 3) {
+      this.questions = this.questions.filter(
+        (question) => question.difficulty === difficulty
+      );
+    }
+  }
+  averageDifficulty() {
+    const total = this.questions.reduce((sum, questions) => {
+      return sum + questions.difficulty;
+    }, 0);
+    return total / this.questions.length;
   }
 }
